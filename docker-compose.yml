@@ -1,7 +1,9 @@
 version: "3"
 
 services:
-  app:
+  web:
     build: .
+    volumes:
+      - ./:/go/src
     ports:
       - "8080:8080"

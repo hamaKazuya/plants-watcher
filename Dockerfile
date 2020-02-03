@@ -1,9 +1,11 @@
-FROM golang:1.12
+FROM golang:1.13
+LABEL maintainer "[hamanKazuya]"
 
-RUN mkdir /go
-WORKDIR /go
-ADD . /go
-
+WORKDIR /go/src
 COPY go.mod .
 COPY go.sum .
-CMD ["go", "run", "main.go"]
+ENV GO111MODULE=on
+RUN go mod download
+EXPOSE 8080
+
+CMD ["go", "run", "/go/src/main.go"]
