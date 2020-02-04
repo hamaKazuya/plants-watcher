@@ -6,6 +6,6 @@ COPY go.mod .
 COPY go.sum .
 ENV GO111MODULE=on
 RUN go mod download
-EXPOSE 8080
+EXPOSE 8088
 
 CMD ["go", "run", "/go/src/main.go"]

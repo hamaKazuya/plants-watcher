@@ -1,8 +1,10 @@
 package main
 
+// import "github.com/jinzhu/gorm"
 import "github.com/gin-gonic/gin"
 
-type Todo struct {
+type User struct {
+	// gorm.Model
 	Name   string `json:"name"`
 	Detail string `json:"detail"`
 }
@@ -11,16 +13,16 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/", func(ctx *gin.Context) {
-		todo := Todo{}
-		todo.Name = "todoname"
-		todo.Detail = "detail_text"
-		ctx.JSON(200, todo)
+		User := User{}
+		User.Name = "Username"
+		User.Detail = "detail_text"
+		ctx.JSON(200, User)
 	})
 
 	router.GET("/plants", func(ctx *gin.Context) {
-		todo := Todo{"todoname", "detail_text"}
-		ctx.JSON(200, todo)
+		User := User{"Username", "detail_text"}
+		ctx.JSON(200, User)
 	})
 
-	router.Run(":8080")
+	router.Run(":8088")
 }

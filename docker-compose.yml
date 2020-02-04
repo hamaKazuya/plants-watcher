@@ -1,9 +1,27 @@
 version: "3"
 
 services:
-  web:
+  web: # 名称apiにしたい
     build: .
     volumes:
       - ./:/go/src
     ports:
-      - "8080:8080"
+      - "8088:8088"
+
+  db:
+    image: mysql:5.6
+    ports:
+      - "3388:3388"
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=plants-watcher
+      - MYSQL_USER=plants
+      - MYSQL_PASSWORD=plants
+    command: mysqld
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_bin
+      --sql-mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+      --innodb-file-format=Barracuda
+      --innodb-file-per-table=true
+      --innodb-large-prefix=true
+      --max-allowed-packet=4M
